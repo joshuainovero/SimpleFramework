@@ -3,7 +3,7 @@ name: CI
 on:
   push:
     branches:
-    - '**'
+    - master
 
 jobs:
 
@@ -22,4 +22,4 @@ jobs:
 
     - name: Lint
       run: |
-        selene ./asjdnk
+        selene ./Packages
