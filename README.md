@@ -27,6 +27,27 @@ SimpleFramework:Import({
 
 ---
 
+## Life Cycle Module Functions
+```lua
+function ExampleModule:Init(): ()
+    -- Called when the module is first imported; used for setup.
+end
+
+function ExampleModule:Start(): ()
+    -- Called after all modules have been initialized; used for starting processes.
+end
+
+function ExampleModule.PlayerAdded(player: Player): ()
+    -- Called when a player joins the game
+end
+
+function ExampleModule.PlayerRemoving(player: Player): ()
+    -- Called when a player leaves the game
+end
+```
+
+---
+
 ## Usage
 
 ### Service Example
