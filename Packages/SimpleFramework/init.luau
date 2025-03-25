@@ -126,6 +126,11 @@ local function connectClientSignal(moduleName: string, remote: RemoteEvent | Unr
     end
 
     local tbl: any = {}
+    local metaTable = {
+        __call = function(_t, ...: any)
+            (remote :: RemoteEvent):FireServer(...)
+        end
+    }
 
     if remote:IsA("RemoteEvent") or remote:IsA("UnreliableRemoteEvent") then
         tbl.Fire = function(_self: ClientRemote, ...: any)
@@ -141,7 +146,7 @@ local function connectClientSignal(moduleName: string, remote: RemoteEvent | Unr
         end
     end
 
-    SimpleFramework.Remotes[moduleName][remote.Name] = tbl
+    SimpleFramework.Remotes[moduleName][remote.Name] = setmetatable(tbl, metaTable)
 
     return tbl
 end
@@ -159,6 +164,11 @@ local function connectServerSignal(moduleName: string, remote: RemoteEvent | Unr
     end
 
     local tbl: any = {}
+    local metaTable = {
+        __call = function(_t, player: Player, ...: any)
+            (remote :: RemoteEvent):FireClient(player, ...)
+        end
+    }
 
     if remote:IsA("RemoteEvent") or remote:IsA("UnreliableRemoteEvent") then
         tbl.Fire = function(_self, player: Player, ...: any)
@@ -188,7 +198,7 @@ local function connectServerSignal(moduleName: string, remote: RemoteEvent | Unr
         end
     end
 
-    SimpleFramework.Remotes[moduleName][remote.Name] = tbl
+    SimpleFramework.Remotes[moduleName][remote.Name] = setmetatable(tbl, metaTable)
 
     return tbl
 end
@@ -240,6 +250,29 @@ function SimpleFramework:Import(paths: { Instance })
         end
     end
 
+    -- Player Added
+    local function playerAdded(player: Player)
+        for _, module in self.Modules do
+            if module.RequiredModule.PlayerAdded then
+                task.spawn(module.RequiredModule.PlayerAdded, player)
+            end
+        end
+    end
+
+    for _, player: Player in Players:GetPlayers() do
+        playerAdded(player)
+    end
+    Players.PlayerAdded:Connect(playerAdded)
+
+    -- Player Removing
+    Players.PlayerRemoving:Connect(function(player: Player)
+        for _, module in self.Modules do
+            if module.RequiredModule.PlayerRemoving then
+                task.spawn(module.RequiredModule.PlayerRemoving, player)
+            end
+        end
+    end)
+
     self.Started = true
 end
 
@@ -255,7 +288,7 @@ end
     @return ServerRemote -- The constructed server remote signal object.
     @throws If called on the client, after the framework has started, or if a duplicate signal is detected.
 ]=]
-function SimpleFramework:CreateSignal(SignalName: string, SignalType: Reliable? | Unreliable | Returns): ServerRemote
+function SimpleFramework:CreateSignal(SignalName: string, SignalType: (Reliable?) | Unreliable | Returns): ServerRemote
     if not RunService:IsServer() then
         error("Cannot create signal in client!")
     end
