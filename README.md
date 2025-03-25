@@ -13,7 +13,7 @@ SimpleFramework:Import({
 })
 ```
 
-### ServerScript (Controller)  
+### ServerScript
 ```lua
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ServerScriptService = game:GetService("ServerScriptService")
@@ -48,7 +48,7 @@ end
 
 ---
 
-## Usage
+## Example Usage
 
 ### Service Example
 ```lua
