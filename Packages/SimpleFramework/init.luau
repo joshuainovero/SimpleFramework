@@ -338,7 +338,7 @@ function SimpleFramework:CreateSignal(SignalName: string, SignalType: (Reliable?
 end
 
 ---------------------------------------------------------------------------------------
--- Framework Initialization
+-- Remotes Initialization
 ---------------------------------------------------------------------------------------
 
 do
