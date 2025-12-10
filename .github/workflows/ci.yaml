@@ -29,7 +29,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: JohnnyMorganz/stylua-action@1.0.0
+      - uses: JohnnyMorganz/stylua-action@v4.1.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           version: v2.3.1 # NOTE: we recommend pinning to a specific version in case of formatting changes
