@@ -1,0 +1,11 @@
+[package]
+name = "sstunickss/simpleframework"
+description = "A framework for importing modules and managing remote signals (client/server) in a Roblox game!"
+license = "MIT"
+authors = ["Joshua Inovero"]
+version = "1.1.1"
+registry = "https://github.com/UpliftGames/wally-index"
+realm = "shared"
+include = ["lib"]
+
+[dependencies]
