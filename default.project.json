@@ -1,9 +1,6 @@
 {
 	"name": "simpleframework",
 	"tree": { 
-        "$className": "DataModel",
-        "ReplicatedStorage": {
-            "$path": "Packages"
-        }
+        "$path": "lib"
     }
 }
