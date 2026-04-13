@@ -22,7 +22,7 @@ jobs:
 
     - name: Lint
       run: |
-        selene ./Packages
+        selene ./lib
     
   style:
     name: Styling
@@ -36,4 +36,4 @@ jobs:
           # CLI arguments
           args: false
       - run: |
-          stylua ./Packages
+          stylua ./lib
