@@ -3,6 +3,13 @@ A lightweight Roblox framework that manages modules and remote communication thr
 <br></br>
 **Note:** The built-in networking is very basic and not meant for production. Use something more robust like Blink.
 
+Get it from the Roblox Marketplace (Toolbox asset):  
+[SimpleFramework](https://create.roblox.com/store/asset/75573349432124/SimpleFramework-v116)
+
+Wally:
+[dependencies]
+SimpleFramework = "sstunickss/simpleframework@1.1.6"
+
 ## Importing SimpleFramework  
 
 ### LocalScript
