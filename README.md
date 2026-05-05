@@ -1,4 +1,7 @@
 # SimpleFramework  
+A lightweight Roblox framework that manages modules and remote communication through a clear, structured lifecycle. Each module follows a defined flow—Import → Init → Start → PlayerAdded/Removing—ensuring consistent initialization, safe execution (no yielding in Init), and scalable expansion.
+<br></br>
+**Note:** The built-in networking is very basic and not meant for production. Use something more robust like Blink.
 
 ## Importing SimpleFramework  
 
